@@ -23,10 +23,10 @@ if (empty($_POST) === false) {
         $login = $users->login($username, $password);
         if ($login === false) {
             $errors[] = 'Sorry, that username/password is invalid';
-        }else{
+        } else {
             session_start();
-            $_SESSION['user_name'] =  $login;
-            header('Location: index.html');
+            $_SESSION['user_name'] = $login;
+            header('Location: product-delivery.php');
             exit();
         }
     }
@@ -132,13 +132,14 @@ if (empty($_POST) === false) {
                     <h3>Sign in to continue</h3>
                     <form method="post" action="">
                         <label>Username</label>
-                        <input type="email" class="form-control" name="email" title="email"
+                        <input type="text" class="form-control" name="username" title="Username"
                                placeholder="Enter your Username" required/><br>
                         <label>Password</label>
                         <input type="password" class="form-control" name="password" title="Password" required/><br>
                         <a href="forgotpass.html"><h6 style="float: right;color: #484848">Forgot Password?</h6></a>
                         <br><br>
-                        <Button type="submit" class="btn btn-primary btn-block" name="submit">Sign in</Button>
+                        <!--<Button type="submit" class="btn btn-primary btn-block" name="submit">Sign in</Button>-->
+                        <input type="submit" href="#" class="btn btn-primary btn-block" name="btn_log" value="Sign in"/>
                     </form>
                     <br>
                     <label style="color: #484848">Don't have an account, <a href="register.php" style="color: #6b15a1">click
@@ -150,8 +151,15 @@ if (empty($_POST) === false) {
         </div>
     </div>
 
+    <?php if(empty($errors) === false){
+
+        echo '<p>' . implode('</p><p>', $errors) . '</p>';
+
+    }
+    ?>
+
     <!-- Footer -->
-    <div id="footer" class="text-center" style="margin-top: 170px">
+    <div id="footer" class="text-center" style="margin-top: 190px">
         <div class="container">
             <p>Copyright &copy; SRMkart. All rights reserved.</p>
             <!--<div id="google_translate_element" style="float: left;margin-top: -10px"></div>

@@ -2,43 +2,38 @@
 require('core/init.php');
 if (isset($_POST['submit'])) {
 
-    if (empty($_POST['name']) || empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
+    if(empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])){
 
         $errors[] = 'All fields are required.';
 
-    } else {
+    }else{
 
         if ($users->user_exists($_POST['username']) === true) {
             $errors[] = 'That username already exists';
         }
-        if (!preg_match("/[a-zA-Z0-9-_]+/", $_POST['username'])) {
+        if (!preg_match("/[a-zA-Z0-9-_]+/",$_POST['username'])){
             $errors[] = 'The user name should be alphanumeric characters with some special symbols (-,_).';
         }
-        if (strlen($_POST['password']) < 6) {
+        if (strlen($_POST['password']) <6){
             $errors[] = 'Your password must be at least 6 characters';
-        } else if (strlen($_POST['password']) > 12) {
+        } else if (strlen($_POST['password']) >12){
             $errors[] = 'Your password cannot be more than 12 characters long';
         }
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
             $errors[] = 'Please enter a valid email address';
-        } else if ($users->email_exists($_POST['email']) === true) {
+        }else if ($users->email_exists($_POST['email']) === true) {
             $errors[] = 'That email already exists.';
-        }
-
-        if ($_POST['password'] != $_POST['confirm_password']) {
-            $errors[] = 'passwords don\'t match';
         }
 
     }
 
-    if (empty($errors) === true) {
+    if(empty($errors) === true){
 
-        $name = $_POST['name'];
-        $username = htmlentities($_POST['username']);
-        $password = $_POST['password'];
-        $email = htmlentities($_POST['email']);
+        $username 	= htmlentities($_POST['username']);
+        $email 		= htmlentities($_POST['email']);
+        $password 	= $_POST['password'];
 
-        $users->register($name, $username, $password, $email);
+        $users->register($username, $email, $password);
         header('Location: register.php?success');
         exit();
     }
@@ -147,8 +142,8 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
                 <div class="box-material">
                     <h3>Create an account</h3>
                     <form method="post" action="">
-                        <label>Name</label>
-                        <input type="text" class="form-control" name="name" title="First Name" required/><br>
+                        <!--<label>Name</label>
+                        <input type="text" class="form-control" name="name" title="Name" required/><br>-->
                         <label>Username</label>
                         <input type="text" class="form-control" name="username" title="Username" required/><br>
                         <label>Email</label>
@@ -156,7 +151,8 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
                         <label>Password</label>
                         <input type="password" class="form-control" name="password" title="Password"
                                required/><br>
-                        <Button type="submit" class="btn btn-primary btn-block" name="submit">Sign up</Button>
+                        <!--<Button type="submit" class="btn btn-primary btn-block" name="submit">Sign up</Button>-->
+                        <input type="submit" class="btn btn-primary btn-block" name="submit" value="Sign up" style="float: right;"/>
                     </form>
                     <br>
                     <label style="color: #484848">Already have an account, <a href="login.php" style="color: #6b15a1">click
@@ -166,6 +162,14 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
             </div>
         </div>
     </div>
+
+    <?php
+
+    if(empty($errors) === false){
+        echo '<p>' . implode('</p><p>', $errors) . '</p>';
+    }
+
+    ?>
 
     <!-- Footer -->
     <div id="footer" class="text-center" style="margin-top: 70px">

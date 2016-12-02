@@ -154,7 +154,7 @@
                         </ul>
                     </div>
 
-                    <a href="../login.html"> <button class="add-to-cart">
+                    <a href="../login.php"> <button class="add-to-cart">
                             <em>Add to Cart</em>
                             <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
                                 <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
@@ -314,7 +314,7 @@
                             }(document, new Date(), "script", "rating-widget.com/"));
                         </script><br><br><br>
                         Price: Rs 630.00<br><br><br>
-                        <a href="../login.html"><button class="btn md cta" style="font-size: 14px">Add to Cart</button></a><br><br>
+                        <a href="../login.php"><button class="btn md cta" style="font-size: 14px">Add to Cart</button></a><br><br>
                         <!--<div class="pm-button" style="width: 95%"><a href="https://www.payumoney.com/paybypayumoney/#/416B942E013B9A9B9D53818D8DD45F30"><img src="https://www.payumoney.com//media/images/payby_payumoney/buttons/213.png" /></a></div>--><br><br>
 
                     </a></b>
