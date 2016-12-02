@@ -2,19 +2,12 @@
 require('core/init.php');
 if (isset($_POST['submit'])) {
 
-    if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['confirm_password'])) {
+    if (empty($_POST['name']) || empty($_POST['password']) || empty($_POST['email'])) {
 
         $errors[] = 'All fields are required.';
 
     } else {
 
-
-        if ($users->user_exists($_POST['username']) === true) {
-            $errors[] = 'That username already exists';
-        }
-        if (!preg_match("/[a-zA-Z0-9-_]+/", $_POST['username'])) {
-            $errors[] = 'The user name should be alphanumeric characters with some special symbols (-,_).';
-        }
         if (strlen($_POST['password']) < 6) {
             $errors[] = 'Your password must be at least 6 characters';
         } else if (strlen($_POST['password']) > 12) {
@@ -25,14 +18,6 @@ if (isset($_POST['submit'])) {
         } else if ($users->email_exists($_POST['email']) === true) {
             $errors[] = 'That email already exists.';
         }
-
-        if ($_POST['password'] != $_POST['confirm_password']) {
-            $errors[] = 'passwords don\'t match';
-        }
-        if ($_POST['tc'] != "1") {
-            $errors[] = 'Please accept the terms and condition';
-        }
-
 
     }
 
@@ -161,7 +146,7 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
                         <Button type="submit" class="btn btn-primary btn-block" name="submit">Sign up</Button>
                     </form>
                     <br>
-                    <label style="color: #484848">Already have an account, <a href="signin.html" style="color: #6b15a1">click
+                    <label style="color: #484848">Already have an account, <a href="login.php" style="color: #6b15a1">click
                             here</a> to
                         login.</label>
                 </div>
