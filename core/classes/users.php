@@ -65,16 +65,17 @@ class Users
      * @param  [string] $email    [email]
      * @return [void]           [empty]
      */
-    public function register($username, $password, $email)
+    public function register($name, $username, $email, $password)
     {
         $password = md5($password);
         $hash = sha1($username + microtime());
         $query = $this->db->prepare("insert into `user` values(?,?,?,?,?)");
-        $query->bindValue(1, $username);
-        $query->bindValue(2, $email);
-        $query->bindValue(3, $password);
-        $query->bindValue(4, $hash);
-        $query->bindValue(5, '0');
+        $query->bindValue(1, $name);
+        $query->bindValue(2, $username);
+        $query->bindValue(3, $email);
+        $query->bindValue(4, $password);
+        $query->bindValue(5, $hash);
+        $query->bindValue(6, '0');
         try {
             $query->execute();
             mail($email, 'Please activate your account', "Hello " .
