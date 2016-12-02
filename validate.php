@@ -7,7 +7,7 @@ if (isset($_SESSION['user_name'])) {
 
 if (isset($_POST['submit'])) {
 
-    if (empty($_POST['address']) || empty($_POST['landmark']) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['pincode'])) {
+    if (empty($_POST['address']) || empty($_POST['landmark'])) {
 
         $errors_new[] = 'All fields are required.';
 
@@ -20,13 +20,13 @@ if (isset($_POST['submit'])) {
         if (!ctype_alpha($_POST['landmark'])) {
             $errors_new[] = 'Landmark should not contain number';
         }
-        if (!ctype_alpha($_POST['city'])) {
+        /*if (!ctype_alpha($_POST['city'])) {
             $errors_new[] = 'Select respective city';
         }
         if (!ctype_alpha($_POST['state'])) {
             $errors_new[] = 'Select proper state.';
         }
-        if (!ctype_alnum($_POST['pincode'])) {
+        if (!ctype_alnum($_POST['pin'])) {
             $errors_new[] = 'Pincode should contain only numbers';
         }
         /*        if (!ctype_alnum($_POST['info'])){
@@ -71,8 +71,8 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($errors_new) === true) {
-        $users->updateUserData($user_name, $_POST['address'], $_POST['landmark'], $_POST['city'], $_POST['state'], $_POST['pincode']);
-        header('Location: product-delivery.php?successvalid');
+        $users->update_answers($user_name, $_POST['address'], $_POST['landmark']);
+        header('Location: https://www.payumoney.com/paybypayumoney/#/DBC19C1C134E152C2DA8B0988947482B');
         exit();
     }
 

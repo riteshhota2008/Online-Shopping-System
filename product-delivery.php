@@ -77,7 +77,7 @@ if ($general->logged_in()) {
 
         <nav id="main-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="products-view.html">Products</a></li>
                 <li><a href="#0">FAQ</a></li>
                 <li><a href="#0">Contact Us</a></li>
@@ -105,12 +105,12 @@ if ($general->logged_in()) {
                         <input class="company" type="text" name="landmark" id="cd-company">
                     </div>
 
-                    <div class="icon">
+                    <!--<div class="icon">
                         <label class="cd-label" for="cd-company">City</label>
                         <input class="company" type="text" name="city" id="cd-company">
-                    </div>
+                    </div>-->
 
-                    <div>
+                    <!--<div>
                         <h4>State</h4>
 
                         <p class="cd-select icon">
@@ -149,12 +149,12 @@ if ($general->logged_in()) {
                                 <option value='West_Bengal'>West Bengal</option>
                             </select>
                         </p>
-                    </div>
+                    </div>-->
 
-                    <div class="icon">
+                    <!--<div class="icon">
                         <label class="cd-label" for="cd-company">Pincode</label>
-                        <input class="company" type="text" name="pincode" id="cd-company">
-                    </div>
+                        <input class="company" type="text" name="pin" id="cd-company">
+                    </div>-->
 
                 </fieldset>
 

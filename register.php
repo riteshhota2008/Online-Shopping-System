@@ -154,7 +154,7 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
                         <!--<Button type="submit" class="btn btn-primary btn-block" name="submit">Sign up</Button>-->
                         <input type="submit" class="btn btn-primary btn-block" name="submit" value="Sign up" style="float: right;"/>
                     </form>
-                    <br>
+                    <br><br>
                     <label style="color: #484848">Already have an account, <a href="login.php" style="color: #6b15a1">click
                             here</a> to
                         login.</label>
