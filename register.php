@@ -2,12 +2,18 @@
 require('core/init.php');
 if (isset($_POST['submit'])) {
 
-    if (empty($_POST['name']) || empty($_POST['password']) || empty($_POST['email'])) {
+    if (empty($_POST['name']) || empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
 
         $errors[] = 'All fields are required.';
 
     } else {
 
+        if ($users->user_exists($_POST['username']) === true) {
+            $errors[] = 'That username already exists';
+        }
+        if (!preg_match("/[a-zA-Z0-9-_]+/", $_POST['username'])) {
+            $errors[] = 'The user name should be alphanumeric characters with some special symbols (-,_).';
+        }
         if (strlen($_POST['password']) < 6) {
             $errors[] = 'Your password must be at least 6 characters';
         } else if (strlen($_POST['password']) > 12) {
@@ -17,6 +23,10 @@ if (isset($_POST['submit'])) {
             $errors[] = 'Please enter a valid email address';
         } else if ($users->email_exists($_POST['email']) === true) {
             $errors[] = 'That email already exists.';
+        }
+
+        if ($_POST['password'] != $_POST['confirm_password']) {
+            $errors[] = 'passwords don\'t match';
         }
 
     }
@@ -138,6 +148,8 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
                     <form method="post" action="">
                         <label>Name</label>
                         <input type="text" class="form-control" name="name" title="First Name" required/><br>
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" title="Username" required/><br>
                         <label>Email</label>
                         <input type="email" class="form-control" name="email" title="Email" required/><br>
                         <label>Password</label>
@@ -155,7 +167,7 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
     </div>
 
     <!-- Footer -->
-    <div id="footer" class="text-center" style="margin-top: 130px">
+    <div id="footer" class="text-center" style="margin-top: 60px">
         <div class="container">
             <p>Copyright &copy; SRMkart. All rights reserved.</p>
             <!--<div id="google_translate_element" style="float: left;margin-top: -10px"></div>
