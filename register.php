@@ -33,11 +33,12 @@ if (isset($_POST['submit'])) {
 
     if (empty($errors) === true) {
 
+        $name = $_POST['name'];
         $username = htmlentities($_POST['username']);
         $password = $_POST['password'];
         $email = htmlentities($_POST['email']);
 
-        $users->register($username, $password, $email);
+        $users->register($name, $username, $password, $email);
         header('Location: register.php?success');
         exit();
     }
@@ -167,7 +168,7 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
     </div>
 
     <!-- Footer -->
-    <div id="footer" class="text-center" style="margin-top: 60px">
+    <div id="footer" class="text-center" style="margin-top: 70px">
         <div class="container">
             <p>Copyright &copy; SRMkart. All rights reserved.</p>
             <!--<div id="google_translate_element" style="float: left;margin-top: -10px"></div>

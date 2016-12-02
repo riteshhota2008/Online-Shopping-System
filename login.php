@@ -133,7 +133,7 @@ if (empty($_POST) === false) {
                     <form method="post" action="">
                         <label>Username</label>
                         <input type="email" class="form-control" name="email" title="email"
-                               placeholder="Enter your email address" required/><br>
+                               placeholder="Enter your Username" required/><br>
                         <label>Password</label>
                         <input type="password" class="form-control" name="password" title="Password" required/><br>
                         <a href="forgotpass.html"><h6 style="float: right;color: #484848">Forgot Password?</h6></a>
